@@ -7,7 +7,7 @@ export default function App() {
     <View  className="flex-1 items-center justify-center bg-grey" >
       <Text className="text-3xl font-pblack">SmartOMR </Text>
       <StatusBar style="auto" />
-      <Link href="/profile" style={{color: 'red'}}>  go to Profile </Link>
+      <Link href="/home" style={{color: 'red'}}>  go to Home </Link>
     </View>
   );
 }

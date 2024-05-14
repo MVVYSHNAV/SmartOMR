@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { Image, ScrollView, StyleSheet, Text, View,  } from 'react-native';
 import { Redirect, router} from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -33,7 +33,6 @@ export default function App() {
             </View>
         </View>
       </ScrollView>
-      <StatusBar backgroundColor='black' style='light'/>
     </SafeAreaView>
   );
 }

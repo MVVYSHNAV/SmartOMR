@@ -54,7 +54,9 @@ const TabsLayout = () => {
           }}
           />
           <Tabs.Screen
+          
           name="scan"
+          handlePress={() => router.push('/scan') }
           options={{
             title: 'Scan',
             headerShown: false,
@@ -65,6 +67,7 @@ const TabsLayout = () => {
                       name="Scan"
                       focused={focused}
                     />
+                    
             )
 
           }}

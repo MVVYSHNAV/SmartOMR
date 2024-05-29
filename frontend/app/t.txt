@@ -1,0 +1,4 @@
+com.somr.app
+
+smartomrdb1
+

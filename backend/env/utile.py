@@ -60,7 +60,47 @@ def getCornerPoints(cont):
 
 def reorder(yPoints):
     yPoints = yPoints.reshape((4,2))
+    yPointsNew = np.zeros((4,1,2), np.int32)
     add = yPoints.sum(1)
-    print(yPoints)
-    print(add)
-    
+    # print(yPoints)
+    # print(add)
+
+    yPointsNew[0] = yPoints[np.argmin(add)]
+    yPointsNew[3] = yPoints[np.argmax(add)]
+    diff = np.diff(yPoints, axis=1)
+    yPointsNew[1] = yPoints[np.argmin(diff)]
+    yPointsNew[2] = yPoints[np.argmax(diff)]
+    # print(diff)
+
+
+    return yPointsNew
+
+def splitBoxes(img): 
+    rows = np.vsplit(img, 5)
+    boxes = []
+    for r in rows:
+        cols = np.hsplit(r, 5)
+        for box in cols:
+            boxes.append(box)
+            cv2.imshow("split",box)
+    return boxes
+
+
+def showAnswers(img,yIndex,grading,ans,questions,choice):
+    secW = int(img.shape[1]/questions)
+    secH = int(img.shape[0]/choice)
+
+    for x in range (0,questions):
+        yAns = yIndex[x]
+        cX = (yAns*secW)+secW//2
+        cY = (x*secH) + secH//2
+
+        if grading[x] == 1:
+            yColor = (0,255,0)
+        else:
+            yColor = (0,0,255)
+            correctAns = ans[x]
+            cv2.circle(img,((correctAns*secW)+secW//2, (x*secH)+secH//2), 50,yColor,cv2.FILLED)
+        cv2.circle(img,(cX,cY), 30,yColor,cv2.FILLED)
+        
+    return img

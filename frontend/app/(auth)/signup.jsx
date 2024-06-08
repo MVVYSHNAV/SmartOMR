@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, Image, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import axios from 'axios';
 import { images } from "../../constants";
 import Formfield from '../../components/Formfield';
 import CustomButton from '../../components/custbtn';
 
-const BASE_URL = process.env.EXPO_PUBLIC_URL;
+const BASE_URL = process.env.EXPO_PUBLIC_URL?.trim();
+console.log("BASE_URL:", BASE_URL);
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -19,6 +20,8 @@ const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const router = useRouter(); // Add the useRouter hook from Expo Router
+
   const submit = async () => {
     if (!BASE_URL) {
       setErrorMessage("Server URL is not set.");
@@ -26,7 +29,7 @@ const SignUp = () => {
     }
 
     setIsSubmitting(true);
-    setErrorMessage("We're experiencing technical issues. Please try again later");
+    setErrorMessage('');
 
     try {
       console.log("Submitting to:", BASE_URL);
@@ -41,9 +44,10 @@ const SignUp = () => {
       const data = response.data;
       console.log(data);
 
-      if (data.success) {
+      if (data.message === "User registered successfully") {
         console.log("Sign up successful");
-        // Handle successful sign-up, perhaps navigate to another screen
+        // Navigate to the SignIn page upon successful sign-up
+        router.push('/signin');
       } else {
         setErrorMessage(data.error || "Sign up failed");
         console.log("Sign up failed:", data.message);
@@ -69,7 +73,8 @@ const SignUp = () => {
       <ScrollView>
         <View className="w-full flex justify-center min-h-[85vh] px-4 my-6" style={{
             minHeight: Dimensions.get("window").height - 100,
-          alignItems: "center" }} >
+            alignItems: "center" 
+          }}>
           <Image
             source={images.logo}
             resizeMode="contain"
@@ -79,6 +84,10 @@ const SignUp = () => {
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
             Create an Account
           </Text>
+
+          {errorMessage ? (
+            <Text className="text-red-500 mt-4">{errorMessage}</Text>
+          ) : null}
 
           <Formfield
             title="Username"
@@ -103,10 +112,10 @@ const SignUp = () => {
           />
 
           <CustomButton 
-          title='Sign Up'
-          handlePress={submit}
-          containerStyles="mt-7"
-          isLoading={isSubmitting}
+            title='Sign Up'
+            handlePress={submit}
+            containerStyles="mt-7"
+            isLoading={isSubmitting}
           />
 
           <View className='justify-center pt-5 flex-row gap-2'>

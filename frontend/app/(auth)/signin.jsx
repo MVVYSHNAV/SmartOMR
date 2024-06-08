@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, Image, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { images } from '../../constants';
 import Formfield from '../../components/Formfield';
 import CustomButton from '../../components/custbtn';
 import axios from 'axios';
 
+// Ensure to load environment variables correctly
 const BASE_URL = process.env.EXPO_PUBLIC_URL;
 console.log("BASE_URL:", BASE_URL);
 
@@ -18,6 +19,7 @@ const SignIn = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
 
   const submit = async () => {
     if (!BASE_URL) {
@@ -26,7 +28,7 @@ const SignIn = () => {
     }
 
     setIsSubmitting(true);
-    setErrorMessage("We're experiencing technical issues. Please try again later");
+    setErrorMessage('');
 
     try {
       console.log("Submitting to:", BASE_URL);
@@ -40,7 +42,7 @@ const SignIn = () => {
       const data = response.data;
       console.log(data);
 
-      if (BASE_URL.data.success) {
+      if (data.message === "Signed in successfully") {
         console.log("Sign in successful");
         router.push('/home');
         // Navigate to the home screen
@@ -69,7 +71,8 @@ const SignIn = () => {
       <ScrollView>
         <View className="w-full flex justify-center min-h-[85vh] px-4 my-6" style={{
             minHeight: Dimensions.get("window").height - 100,
-          alignItems: "center" }} >
+            alignItems: "center" 
+          }}>
           <Image
             source={images.logo}
             resizeMode="contain"
@@ -79,6 +82,10 @@ const SignIn = () => {
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
             Log in to SmartOMR
           </Text>
+
+          {errorMessage ? (
+            <Text className="text-red-500 mt-4">{errorMessage}</Text>
+          ) : null}
 
           <Formfield
             title="Email"
@@ -104,7 +111,7 @@ const SignIn = () => {
 
           <View className='justify-center pt-5 flex-row gap-2'>
             <Text className='text-lg text-gray-100 font-pregular'>
-              Don't have account?
+              Don't have an account?
             </Text>
             <Link href="/signup" className='text-lg font-psemibold text-white'> Sign Up</Link>
           </View>

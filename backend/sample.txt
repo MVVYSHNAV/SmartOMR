@@ -238,3 +238,6 @@ def showAnswers(img, yIndex, grading, ans, questions, choice):
             cv2.circle(img, ((correctAns * secW) + secW // 2, (x * secH) + secH // 2), 50, (0, 255, 0), cv2.FILLED)
         cv2.circle(img, (cX, cY), 30, color, cv2.FILLED)
     return img
+
+
+    mongodb+srv://smartomr:smartomrdb1@cluster0.qj6tpvi.mongodb.net

@@ -1,0 +1,5 @@
+    
+
+# Add this button in the __init__ method of OMRApp class
+self.export_button = tk.Button(root, text="Export to CSV", command=self.export_to_csv, bg=button_bg, fg=button_fg)
+self.export_button.pack(pady=10)

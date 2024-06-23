@@ -1,0 +1,386 @@
+from docx import Document
+from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+# Create a new Document
+doc = Document()
+
+# Title
+doc.add_heading('Optical Mark Recognition (OMR) Scanner Project Report', 0)
+
+# CONTENTS
+doc.add_heading('CONTENTS', level=1)
+contents = [
+    "1. INTRODUCTION",
+    "    - 1.1 Overview",
+    "    - 1.2 Feasibility Study",
+    "    - 1.3 Existing System",
+    "    - 1.4 Proposed System",
+    "2. LITERATURE SURVEY",
+    "3. HARDWARE AND SOFTWARE REQUIREMENTS",
+    "    - 3.1 Hardware Requirements",
+    "    - 3.2 Software Requirements",
+    "4. SOFTWARE REQUIREMENTS SPECIFICATION",
+    "    - 4.1 Overall Description",
+    "        - 4.1.1 Product Perspective",
+    "        - 4.1.2 Product Functions",
+    "        - 4.1.3 User Classes and Characteristics",
+    "        - 4.1.4 Operating Environment",
+    "        - 4.1.5 Design and Implementation Constraints",
+    "        - 4.1.6 User Documentation",
+    "        - 4.1.7 Assumptions and Dependencies",
+    "    - 4.2 External Interface Requirements",
+    "        - 4.2.1 User Interfaces",
+    "        - 4.2.2 Hardware Interfaces",
+    "        - 4.2.3 Software Interfaces",
+    "        - 4.2.4 Communications Interfaces",
+    "    - 4.3 System Features",
+    "        - 4.3.1 Image Data Import and Preprocessing",
+    "        - 4.3.2 Image Processing and Grading",
+    "        - 4.3.3 User Management and Authentication",
+    "        - 4.3.4 Reporting and Documentation",
+    "    - 4.4 Other Nonfunctional Requirements",
+    "        - 4.4.1 Performance Requirements",
+    "        - 4.4.2 Safety Requirements",
+    "        - 4.4.3 Security Requirements",
+    "        - 4.4.4 Software Quality Attributes",
+    "    - 4.5 Other Requirements",
+    "        - 4.5.1 Database Requirements",
+    "        - 4.5.2 Internationalization Requirements",
+    "        - 4.5.3 Legal and Regulatory Requirements",
+    "        - 4.5.4 Reuse Objectives",
+    "        - 4.5.5 Documentation Requirements",
+    "5. SYSTEM DESIGN DESCRIPTION (SDD)",
+    "    - 5.1 Introduction",
+    "        - 5.1.1 Purpose",
+    "        - 5.1.2 Scope",
+    "        - 5.1.3 References",
+    "        - 5.1.4 Overview",
+    "        - 5.1.5 Constraints",
+    "    - 5.2 System Overview",
+    "        - 5.2.1 System Context",
+    "        - 5.2.2 System Design",
+    "        - 5.2.3 Background to the Project",
+    "        - 5.2.4 Architecture Diagram",
+    "    - 5.3 Functional Design",
+    "        - 5.3.1 Activity Diagram",
+    "        - 5.3.2 System Diagram",
+    "        - 5.3.3 Class Diagram",
+    "6. IMPLEMENTATION",
+    "    - 6.1 Pseudo Code",
+    "7. TESTING",
+    "    - 7.1 Introduction",
+    "    - 7.2 Description of Testing",
+    "        - 7.2.1 Unit Testing",
+    "        - 7.2.2 Integration Testing",
+    "        - 7.2.3 System Testing",
+    "    - 7.3 Test Cases",
+    "        - 7.3.1 Unit Testing",
+    "        - 7.3.2 Integration Testing",
+    "        - 7.3.3 System Testing",
+    "8. SCREENSHOTS",
+    "    - 8.1 Home Page",
+    "    - 8.2 Result Page",
+    "9. CONCLUSION",
+    "10. FUTURE SCOPE AND ENHANCEMENT",
+    "11. BIBLIOGRAPHY",
+    "    - 11.1 Books Referred",
+    "    - 11.2 Website Referred",
+    "    - 11.3 Reference",
+    "12. USER MANUAL",
+    "    - 12.1 Home Page",
+    "    - 12.2 Image Processing",
+    "    - 12.3 Result Page"
+]
+for item in contents:
+    doc.add_paragraph(item)
+
+# 1. INTRODUCTION
+doc.add_heading('1. INTRODUCTION', level=1)
+doc.add_heading('1.1 Overview', level=2)
+doc.add_paragraph(
+    "The Optical Mark Recognition (OMR) Scanner project is designed to automate the grading of multiple-choice answer sheets using image processing techniques. This project aims to simplify and expedite the evaluation process, ensuring accuracy and efficiency in educational and examination settings."
+)
+
+doc.add_heading('1.2 Feasibility Study', level=2)
+doc.add_paragraph(
+    "The feasibility study involves analyzing the technical, operational, and economic aspects of the project. The OMR Scanner is technically feasible given the availability of advanced image processing libraries like OpenCV. Operationally, it can be integrated into educational institutions' existing workflows. Economically, it reduces the cost of manual grading."
+)
+
+doc.add_heading('1.3 Existing System', level=2)
+doc.add_paragraph(
+    "The existing system involves manual grading, which is time-consuming, prone to errors, and resource-intensive."
+)
+
+doc.add_heading('1.4 Proposed System', level=2)
+doc.add_paragraph(
+    "The proposed system automates the grading process, significantly reducing the time and effort required. It provides accurate results and supports various formats of answer sheets."
+)
+
+# 2. LITERATURE SURVEY
+doc.add_heading('2. LITERATURE SURVEY', level=1)
+doc.add_paragraph(
+    "A detailed literature survey was conducted to explore existing solutions and technologies used in OMR systems. Research papers, articles, and previous projects were reviewed to understand the advancements and challenges in this field."
+)
+
+# 3. HARDWARE AND SOFTWARE REQUIREMENTS
+doc.add_heading('3. HARDWARE AND SOFTWARE REQUIREMENTS', level=1)
+doc.add_heading('3.1 Hardware Requirements', level=2)
+doc.add_paragraph(
+    "- PC with at least 4GB RAM\n"
+    "- Webcam or Camera\n"
+    "- Scanner (optional)\n"
+    "- Storage Device"
+)
+
+doc.add_heading('3.2 Software Requirements', level=2)
+doc.add_paragraph(
+    "- Python 3.x\n"
+    "- OpenCV library\n"
+    "- Tkinter for GUI\n"
+    "- Pillow library"
+)
+
+# 4. SOFTWARE REQUIREMENTS SPECIFICATION
+doc.add_heading('4. SOFTWARE REQUIREMENTS SPECIFICATION', level=1)
+
+doc.add_heading('4.1 Overall Description', level=2)
+doc.add_heading('4.1.1 Product Perspective', level=3)
+doc.add_paragraph(
+    "The OMR Scanner is a standalone application that utilizes a webcam or pre-scanned images to detect and grade OMR sheets."
+)
+
+doc.add_heading('4.1.2 Product Functions', level=3)
+doc.add_paragraph(
+    "- Capture or upload OMR sheet images.\n"
+    "- Process images to detect marked answers.\n"
+    "- Grade the answers based on the correct answer key.\n"
+    "- Display and save the results."
+)
+
+doc.add_heading('4.1.3 User Classes and Characteristics', level=3)
+doc.add_paragraph(
+    "- Teachers and educators for grading exams.\n"
+    "- Administrative staff for processing large volumes of answer sheets."
+)
+
+doc.add_heading('4.1.4 Operating Environment', level=3)
+doc.add_paragraph("Windows, macOS, or Linux operating systems.")
+
+doc.add_heading('4.1.5 Design and Implementation Constraints', level=3)
+doc.add_paragraph(
+    "- Requires high-quality images for accurate detection.\n"
+    "- The system should be user-friendly and require minimal training."
+)
+
+doc.add_heading('4.1.6 User Documentation', level=3)
+doc.add_paragraph("User manual and online help guide.")
+
+doc.add_heading('4.1.7 Assumptions and Dependencies', level=3)
+doc.add_paragraph(
+    "- Assumes availability of a webcam or scanner.\n"
+    "- Depends on the proper functioning of image processing libraries."
+)
+
+doc.add_heading('4.2 External Interface Requirements', level=2)
+doc.add_heading('4.2.1 User Interfaces', level=3)
+doc.add_paragraph("Graphical User Interface (GUI) using Tkinter.")
+
+doc.add_heading('4.2.2 Hardware Interfaces', level=3)
+doc.add_paragraph("Camera or scanner for image capture.")
+
+doc.add_heading('4.2.3 Software Interfaces', level=3)
+doc.add_paragraph("Integrates with OpenCV for image processing.")
+
+doc.add_heading('4.2.4 Communications Interfaces', level=3)
+doc.add_paragraph("Not applicable.")
+
+doc.add_heading('4.3 System Features', level=2)
+doc.add_heading('4.3.1 Image Data Import and Preprocessing', level=3)
+doc.add_paragraph(
+    "This feature allows users to upload an image of the OMR sheet or capture it using a webcam. The system then preprocesses the image by converting it to grayscale and applying Gaussian Blur to remove noise."
+)
+
+doc.add_heading('4.3.2 Image Processing and Grading', level=3)
+doc.add_paragraph(
+    "The system detects edges using the Canny edge detector and finds contours to identify the OMR sheet. It then warps the perspective to get a top-down view and splits the image into individual question boxes. The selected choices are determined by counting non-zero pixels in each choice box, and the answers are graded by comparing them with the answer key."
+)
+
+doc.add_heading('4.3.3 User Management and Authentication', level=3)
+doc.add_paragraph(
+    "The system includes basic user management features, allowing users to log in and manage their profiles. Authentication ensures that only authorized users can access the grading functionality."
+)
+
+doc.add_heading('4.3.4 Reporting and Documentation', level=3)
+doc.add_paragraph(
+    "The system generates detailed reports showing the graded results, including correct and incorrect answers and the total score. These reports can be saved and printed for documentation purposes."
+)
+
+doc.add_heading('4.4 Other Nonfunctional Requirements', level=2)
+doc.add_heading('4.4.1 Performance Requirements', level=3)
+doc.add_paragraph("The system should process each OMR sheet within a few seconds.")
+
+doc.add_heading('4.4.2 Safety Requirements', level=3)
+doc.add_paragraph("The system should handle errors gracefully and provide informative messages to the user.")
+
+doc.add_heading('4.4.3 Security Requirements', level=3)
+doc.add_paragraph("User data and grading results should be securely stored and protected from unauthorized access.")
+
+doc.add_heading('4.4.4 Software Quality Attributes', level=3)
+doc.add_paragraph(
+    "The system should be reliable, maintainable, and user-friendly. It should provide accurate results and be easy to use and maintain."
+)
+
+doc.add_heading('4.5 Other Requirements', level=2)
+doc.add_heading('4.5.1 Database Requirements', level=3)
+doc.add_paragraph("The system may use a simple file-based storage for storing user data and results.")
+
+doc.add_heading('4.5.2 Internationalization Requirements', level=3)
+doc.add_paragraph("The system should support multiple languages for user interfaces.")
+
+doc.add_heading('4.5.3 Legal and Regulatory Requirements', level=3)
+doc.add_paragraph("The system should comply with data protection regulations.")
+
+doc.add_heading('4.5.4 Reuse Objectives', level=3)
+doc.add_paragraph("The code should be modular and reusable for similar applications.")
+
+doc.add_heading('4.5.5 Documentation Requirements', level=3)
+doc.add_paragraph("Comprehensive user and developer documentation should be provided.")
+
+# 5. SYSTEM DESIGN DESCRIPTION (SDD)
+doc.add_heading('5. SYSTEM DESIGN DESCRIPTION (SDD)', level=1)
+
+doc.add_heading('5.1 Introduction', level=2)
+doc.add_heading('5.1.1 Purpose', level=3)
+doc.add_paragraph("This section describes the design of the OMR Scanner system.")
+
+doc.add_heading('5.1.2 Scope', level=3)
+doc.add_paragraph("The design includes the system architecture, data flow, and detailed design of components.")
+
+doc.add_heading('5.1.3 References', level=3)
+doc.add_paragraph("Refer to the bibliography section for references.")
+
+doc.add_heading('5.1.4 Overview', level=3)
+doc.add_paragraph("The system design is modular, with components for image capture, processing, grading, and reporting.")
+
+doc.add_heading('5.1.5 Constraints', level=3)
+doc.add_paragraph("The design should ensure high accuracy and performance.")
+
+doc.add_heading('5.2 System Overview', level=2)
+doc.add_heading('5.2.1 System Context', level=3)
+doc.add_paragraph("The system interacts with users through a GUI for capturing and processing OMR sheets.")
+
+doc.add_heading('5.2.2 System Design', level=3)
+doc.add_paragraph("The design includes modules for image preprocessing, feature extraction, answer detection, and grading.")
+
+doc.add_heading('5.2.3 Background to the Project', level=3)
+doc.add_paragraph("The project is based on the need for an automated OMR grading system to improve efficiency in educational institutions.")
+
+doc.add_heading('5.2.4 Architecture Diagram', level=3)
+doc.add_paragraph("Include a system architecture diagram here.")
+
+doc.add_heading('5.3 Functional Design', level=2)
+doc.add_heading('5.3.1 Activity Diagram', level=3)
+doc.add_paragraph("Include an activity diagram depicting the flow of activities in the system.")
+
+doc.add_heading('5.3.2 System Diagram', level=3)
+doc.add_paragraph("Include a system diagram showing major components and their interactions.")
+
+doc.add_heading('5.3.3 Class Diagram', level=3)
+doc.add_paragraph("Include a class diagram showing the structure of classes and relationships.")
+
+# 6. IMPLEMENTATION
+doc.add_heading('6. IMPLEMENTATION', level=1)
+
+doc.add_heading('6.1 Pseudo Code', level=2)
+doc.add_paragraph(
+    """START
+LOAD image from file or capture using webcam
+CONVERT image to grayscale
+APPLY Gaussian Blur to the image
+DETECT edges using Canny edge detector
+FIND contours in the image
+EXTRACT the largest contour (OMR sheet)
+WARP perspective to get a top-down view of the OMR sheet
+SPLIT the image into individual question boxes
+FOR each question box
+    COUNT non-zero pixels in each choice box
+    DETERMINE the selected choice
+    COMPARE with the answer key
+    ASSIGN marks based on correctness
+DISPLAY the results
+END"""
+)
+
+# 7. TESTING
+doc.add_heading('7. TESTING', level=1)
+
+doc.add_heading('7.1 Introduction', level=2)
+doc.add_paragraph("Testing ensures the system functions correctly and meets all requirements.")
+
+doc.add_heading('7.2 Description of Testing', level=2)
+doc.add_heading('7.2.1 Unit Testing', level=3)
+doc.add_paragraph("Testing individual functions like image processing, answer detection, and grading.")
+
+doc.add_heading('7.2.2 Integration Testing', level=3)
+doc.add_paragraph("Testing the integration of all components and their interactions.")
+
+doc.add_heading('7.2.3 System Testing', level=3)
+doc.add_paragraph("End-to-end testing of the entire system to ensure it meets the specified requirements.")
+
+doc.add_heading('7.3 Test Cases', level=2)
+doc.add_heading('7.3.1 Unit Testing', level=3)
+doc.add_paragraph("Test image loading and preprocessing.\nTest individual box detection and mark counting.")
+
+doc.add_heading('7.3.2 Integration Testing', level=3)
+doc.add_paragraph("Test the integration of image capture, processing, and result display.")
+
+doc.add_heading('7.3.3 System Testing', level=3)
+doc.add_paragraph("Test the complete system with various types of OMR sheets to ensure accuracy.")
+
+# 8. SCREENSHOTS
+doc.add_heading('8. SCREENSHOTS', level=1)
+
+doc.add_heading('8.1 Home Page', level=2)
+doc.add_paragraph("Include a screenshot of the home page of the application.")
+
+doc.add_heading('8.2 Result Page', level=2)
+doc.add_paragraph("Include a screenshot showing the graded results.")
+
+# 9. CONCLUSION
+doc.add_heading('9. CONCLUSION', level=1)
+doc.add_paragraph(
+    "The OMR Scanner project successfully automates the grading process, providing accurate and efficient results. It simplifies the workload for educators and ensures timely feedback for students."
+)
+
+# 10. FUTURE SCOPE AND ENHANCEMENT
+doc.add_heading('10. FUTURE SCOPE AND ENHANCEMENT', level=1)
+doc.add_paragraph(
+    "Future enhancements may include:\n"
+    "- Support for more complex OMR formats.\n"
+    "- Integration with online examination platforms.\n"
+    "- Enhanced user management and reporting features."
+)
+
+# 11. BIBLIOGRAPHY
+doc.add_heading('11. BIBLIOGRAPHY', level=1)
+
+doc.add_heading('11.1 Books Referred', level=2)
+doc.add_paragraph("- \"Learning OpenCV\" by Gary Bradski and Adrian Kaehler")
+
+doc.add_heading('11.2 Websites Referred', level=2)
+doc.add_paragraph("- OpenCV official documentation\n- Python official documentation")
+
+doc.add_heading('11.3 Reference', level=2)
+doc.add_paragraph("- Research papers and articles on OMR systems and image processing techniques.")
+
+# 12. USER MANUAL
+doc.add_heading('12. USER MANUAL', level=1)
+
+doc.add_heading('12.1 Home Page', level=2)
+doc.add_paragraph("The home page allows users to upload an image or capture it using a webcam.")
+
+doc.add_heading('12.2 Image Processing', level=2)
+doc.add_paragraph("The system processes the uploaded or captured image to detect and grade the answers.")
+
+doc.add_heading('12.3 &#8203;:citation[oaicite:0]{index=0}&#8203;
